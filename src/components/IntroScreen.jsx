@@ -9,122 +9,205 @@ export function IntroScreen({ onFinish }) {
     setIsExiting(true)
     setTimeout(() => {
       onFinish()
-    }, 600)
+    }, 650)
   }, [onFinish])
 
+  // Progress counter with authentic aviation initialization steps
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval)
+          clearInterval(timer)
           return 100
         }
-        return prev + 2
+        return prev + 1
       })
-    }, 30)
+    }, 28)
 
-    return () => clearInterval(interval)
+    return () => clearInterval(timer)
   }, [])
 
-  // Auto exit when progress completes
+  // Auto exit shortly after reaching 100%
   useEffect(() => {
     if (progress === 100) {
-      const timer = setTimeout(() => {
+      const exitTimer = setTimeout(() => {
         handleEnter()
-      }, 700)
-      return () => clearTimeout(timer)
+      }, 900)
+      return () => clearTimeout(exitTimer)
     }
   }, [progress, handleEnter])
 
+  // Keyboard shortcut: ESC to skip intro
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        handleEnter()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleEnter])
+
+  // Telemetry status description based on percentage
+  const getStatusMessage = (p) => {
+    if (p < 25) return 'Calibrating global navigation & 450+ IATA routes...'
+    if (p < 55) return 'Syncing direct airline GDS live fare databases...'
+    if (p < 85) return 'Configuring VIP concierge & bespoke holiday suites...'
+    return 'Flight clearance approved • Ready for immediate takeoff'
+  }
+
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0d1c18] text-white overflow-hidden transition-all duration-700 ${
+      className={`fixed inset-0 z-50 flex flex-col justify-between p-4 sm:p-8 md:p-12 bg-[#091511] text-white overflow-hidden transition-all duration-700 ${
         isExiting ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
     >
-      {/* 3D Atmospheric Radar & Flight Grid Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1d3f35] via-[#0e211c] to-[#08120f] pointer-events-none" />
+      {/* Cinematic Depth & Ambient Aviation Runway Lighting */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#152e26_0%,#081410_70%,#040a08_100%)] pointer-events-none" />
 
-      {/* Animated Radar Rings */}
-      <div className="absolute w-[600px] h-[600px] rounded-full border border-emerald-500/15 animate-ping duration-[4000ms] pointer-events-none" />
-      <div className="absolute w-[440px] h-[440px] rounded-full border border-emerald-400/20 pointer-events-none animate-pulse" />
-      <div className="absolute w-[280px] h-[280px] rounded-full border border-emerald-300/25 pointer-events-none" />
-
-      {/* Star Particles / Floating Dots */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-[#e4c99b] rounded-full animate-pulse"
-            style={{
-              top: `${(i * 17) % 95}%`,
-              left: `${(i * 23) % 95}%`,
-              animationDelay: `${(i * 0.2)}s`,
-              opacity: (i % 3 === 0) ? 0.8 : 0.4,
-            }}
-          />
-        ))}
+      {/* Runway Approach Guideline Lights */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-full bg-gradient-to-t from-[#e4c99b] via-emerald-400/30 to-transparent" />
+        <div className="absolute left-1/2 -translate-x-32 bottom-0 w-[1px] h-full bg-gradient-to-t from-emerald-500/40 to-transparent transform -skew-x-12" />
+        <div className="absolute left-1/2 translate-x-32 bottom-0 w-[1px] h-full bg-gradient-to-t from-emerald-500/40 to-transparent transform skew-x-12" />
       </div>
 
-      {/* Main Content Box */}
-      <div className="relative z-10 max-w-lg w-full mx-6 p-8 sm:p-10 text-center rounded-3xl bg-white/[0.04] backdrop-blur-2xl border border-white/15 shadow-[0_0_80px_rgba(20,50,40,0.8)] space-y-6 transform hover:scale-[1.01] transition-transform">
-        {/* Animated Flying Airplane Badge with 3D Float & Glow */}
-        <div className="relative inline-block mx-auto">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#1b3b32] to-[#36685a] p-1 shadow-[0_0_35px_rgba(49,150,120,0.6)] animate-float">
-            <div className="w-full h-full rounded-full bg-[#122722] flex items-center justify-center border border-emerald-400/30">
-              <span className="text-[#e4c99b] transform -rotate-45 scale-125 inline-block animate-pulse">
-                <Icon name="plane" size={42} />
+      {/* Subtle Atmospheric Radar Waves */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-emerald-500/10 pointer-events-none animate-ping duration-[6000ms]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border border-emerald-400/15 pointer-events-none" />
+
+      {/* TOP BAR: Executive Status & Skip Action */}
+      <header className="relative z-20 flex items-center justify-between w-full max-w-6xl mx-auto">
+        <div className="flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-[#1b3830] text-[#e4c99b] flex items-center justify-center border border-[#e4c99b]/30 shadow-[0_0_15px_rgba(228,201,155,0.25)]">
+            <Icon name="plane" size={16} />
+          </span>
+          <div>
+            <span className="text-xs font-mono font-bold tracking-widest text-[#e4c99b] uppercase block">
+              AEROPLANE GLOBAL FLEET
+            </span>
+            <span className="text-[10px] text-white/50 tracking-wider flex items-center gap-1.5 font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>RADAR SYSTEM: OPERATIONAL</span>
+            </span>
+          </div>
+        </div>
+
+        <button
+          onClick={handleEnter}
+          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-[#e4c99b]/50 text-xs text-white/80 hover:text-white transition-all backdrop-blur-md cursor-pointer shadow-sm hover:shadow-[0_0_20px_rgba(228,201,155,0.3)]"
+          aria-label="Skip introduction"
+        >
+          <span className="font-mono tracking-wider text-[11px]">SKIP INTRO</span>
+          <span className="text-[#e4c99b] group-hover:translate-x-0.5 transition-transform font-bold">➔</span>
+        </button>
+      </header>
+
+      {/* CENTER: Professional VIP First-Class Boarding Pass & Telemetry Hub */}
+      <main className="relative z-20 w-full max-w-2xl mx-auto my-auto py-6">
+        <div className="relative bg-[#0d1e19]/90 backdrop-blur-2xl rounded-3xl border border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.8),_0_0_40px_rgba(49,89,79,0.3)] overflow-hidden">
+          {/* Top Boarding Pass Header Ribbon */}
+          <div className="px-6 sm:px-8 py-4 bg-gradient-to-r from-[#17382f] via-[#244f43] to-[#17382f] border-b border-white/15 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2 font-mono tracking-widest text-[#e4c99b] uppercase text-[11px] font-bold">
+              <span>✦ PRIORITY BOARDING PASS</span>
+              <span>·</span>
+              <span className="text-white/80">FIRST CLASS SUITE</span>
+            </div>
+            <span className="font-mono text-[11px] text-emerald-300 font-bold tracking-wider">
+              FLIGHT AA-880
+            </span>
+          </div>
+
+          <div className="p-6 sm:p-9 space-y-7">
+            {/* Passenger & Flight Details Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-6 border-b border-white/10 font-mono text-xs">
+              <div>
+                <span className="text-[10px] text-white/50 uppercase tracking-wider block">PASSENGER</span>
+                <span className="font-bold text-white tracking-wide">VIP TRAVELER</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-white/50 uppercase tracking-wider block">GATE / SEAT</span>
+                <span className="font-bold text-[#e4c99b] tracking-wide">01A / SUITE 1A</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-white/50 uppercase tracking-wider block">ORIGIN</span>
+                <span className="font-bold text-white tracking-wide">NEW YORK (JFK)</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-white/50 uppercase tracking-wider block">DESTINATION</span>
+                <span className="font-bold text-emerald-300 tracking-wide">WORLDWIDE (GLOBAL)</span>
+              </div>
+            </div>
+
+            {/* Brand Title & Hero Statement */}
+            <div className="text-center space-y-2">
+              <span className="inline-block px-3 py-1 rounded-full text-[10px] font-mono tracking-[0.25em] uppercase text-[#e4c99b] bg-[#e4c99b]/10 border border-[#e4c99b]/25">
+                ✦ OFFICIAL IATA ACCREDITED AGENCY ✦
               </span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-white tracking-tight">
+                Aeroplane <span className="italic text-[#e4c99b]">Tours & Travels</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-white/70 font-light max-w-md mx-auto leading-relaxed pt-1">
+                Elevating aviation & bespoke worldwide holiday journeys with effortless luxury and 24/7 dedicated flight concierge.
+              </p>
+            </div>
+
+            {/* Aircraft Cruising Silhouette Animation */}
+            <div className="relative py-2 overflow-hidden">
+              <div className="flex items-center justify-between text-[11px] font-mono text-[#e4c99b] mb-2">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#e4c99b] animate-ping" />
+                  <span>PRE-FLIGHT TELEMETRY</span>
+                </span>
+                <span className="font-bold text-white">{progress}% INITIALIZED</span>
+              </div>
+
+              {/* Progress Track */}
+              <div className="relative w-full h-2 rounded-full bg-black/50 p-0.5 border border-white/15 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#244f43] via-[#e4c99b] to-[#5cdbaf] transition-all duration-150 shadow-[0_0_20px_#e4c99b]"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+
+              <div className="mt-2.5 flex items-center justify-between text-[10px] font-mono text-white/60">
+                <span className="truncate pr-2">{getStatusMessage(progress)}</span>
+                <span className="font-bold text-emerald-400 flex-shrink-0">
+                  {progress === 100 ? 'READY' : 'CHECKING'}
+                </span>
+              </div>
+            </div>
+
+            {/* Primary Action Button */}
+            <div className="pt-2">
+              <button
+                onClick={handleEnter}
+                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#e4c99b] via-[#f0dcbe] to-[#d8b884] text-[#091511] font-bold text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(228,201,155,0.45)] hover:shadow-[0_0_40px_rgba(228,201,155,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
+              >
+                <span>Board Flight & Enter Website</span>
+                <Icon name="arrowRight" size={17} />
+              </button>
             </div>
           </div>
-          {/* Glowing orbital dot */}
-          <div className="absolute top-0 right-1 w-3.5 h-3.5 rounded-full bg-[#e4c99b] shadow-[0_0_12px_#e4c99b] animate-ping" />
         </div>
+      </main>
 
-        {/* Brand Title with Glowing 3D Text */}
-        <div className="space-y-2">
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] tracking-[0.25em] font-extrabold uppercase bg-emerald-500/10 text-[#e4c99b] border border-[#e4c99b]/25">
-            ✦ FLIGHT CLEARANCE APPROVED ✦
+      {/* FOOTER BAR: Security Badge & Copyright */}
+      <footer className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-white/45 w-full max-w-6xl mx-auto pt-2">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1">
+            <Icon name="shield" size={13} className="text-[#e4c99b]" />
+            <span>IATA VERIFIED #96-4028</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-            Aeroplane <span className="text-[#e4c99b] italic">Tours & Travels</span>
-          </h1>
-          <p className="text-xs sm:text-sm text-emerald-100/70 font-light max-w-xs mx-auto">
-            Preparing your luxury aviation & global travel experience...
-          </p>
+          <span>·</span>
+          <span>PCI-DSS ENCRYPTED</span>
+          <span>·</span>
+          <span>24/7 CONCIERGE</span>
         </div>
-
-        {/* Progress Bar & Telemetry Status */}
-        <div className="space-y-3 pt-2">
-          <div className="flex justify-between items-center text-xs font-mono text-[#e4c99b]/90">
-            <span>RADAR: LIVE 24/7</span>
-            <span>{progress}% READY</span>
-          </div>
-
-          <div className="w-full h-2 rounded-full bg-black/40 overflow-hidden p-0.5 border border-white/10">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-[#2a6858] via-[#e4c99b] to-[#45b08e] transition-all duration-150 shadow-[0_0_15px_#e4c99b]"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <div className="flex items-center justify-between text-[11px] text-white/50 font-mono">
-            <span>ROUTE: WORLDWIDE</span>
-            <span>CABIN: FIRST CLASS</span>
-          </div>
+        <div>
+          <span>PRESS [ESC] TO SKIP DIRECTLY</span>
         </div>
-
-        {/* Action Button */}
-        <div className="pt-2">
-          <button
-            onClick={handleEnter}
-            className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#e4c99b] to-[#d6b782] text-[#0e211c] font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(228,201,155,0.4)] hover:shadow-[0_0_40px_rgba(228,201,155,0.7)] hover:scale-[1.02] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <span>Take Flight Now</span>
-            <Icon name="planeTakeoff" size={16} />
-          </button>
-        </div>
-      </div>
+      </footer>
     </div>
   )
 }
