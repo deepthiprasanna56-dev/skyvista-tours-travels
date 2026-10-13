@@ -42,7 +42,7 @@ const aircraftFleet = [
     speedPercent: 88,
     altitude: '43,100 ft',
     capacity: '44 First Class Suites',
-    image: 'https://images.unsplash.com/photo-1519074069444-1ba4ea16e6f4?auto=format&fit=crop&w=1200&q=85',
+    image: 'https://images.unsplash.com/photo-1740495328295-1e7f4f560c0c?auto=format&fit=crop&w=1200&q=85',
     description: 'Carbon-composite quietest widebody aircraft in the skies. Designed for ultra-long haul intercontinental flights without technical stops or refuel delays.',
     amenities: ['Circadian LED Sky Simulation', 'Zero-G Ergonomic Seating', 'Executive Boardroom Layout', 'Dedicated VIP Luggage Hold'],
     hourlyRate: 18200,
@@ -51,6 +51,7 @@ const aircraftFleet = [
 
 export function FleetShowcase({ onSelectCharter }) {
   const [selectedFleetId, setSelectedFleetId] = useState('g700')
+  const [failedImageId, setFailedImageId] = useState(null)
   const activeFleet = aircraftFleet.find((f) => f.id === selectedFleetId) || aircraftFleet[0]
 
   return (
@@ -96,11 +97,22 @@ export function FleetShowcase({ onSelectCharter }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#091724]/90 backdrop-blur-xl rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl">
           {/* Left: Aircraft Visual with Floating Telemetry */}
           <div className="lg:col-span-6 relative rounded-2xl overflow-hidden aspect-[4/3] group">
-            <img
-              src={activeFleet.image}
-              alt={activeFleet.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
+            {failedImageId === activeFleet.id ? (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[radial-gradient(ellipse_at_50%_38%,#17334a_0%,#091724_68%,#050e17_100%)] text-[#e6caa0]">
+                <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full border border-[#e6caa0]/25 bg-white/5">
+                  <Icon name="plane" size={42} />
+                </div>
+                <span className="text-[10px] font-mono tracking-[0.28em] text-white/60">AIRCRAFT PROFILE</span>
+                <span className="mt-2 font-serif text-xl">{activeFleet.name.split(' ').slice(0, 2).join(' ')}</span>
+              </div>
+            ) : (
+              <img
+                src={activeFleet.image}
+                alt={`${activeFleet.name} at the airport`}
+                onError={() => setFailedImageId(activeFleet.id)}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
             <div className="absolute top-4 left-4">

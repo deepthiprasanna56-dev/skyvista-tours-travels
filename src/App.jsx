@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { IntroScreen } from './components/IntroScreen'
+import { lazy, Suspense, useState } from 'react'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { FlightSearch } from './components/FlightSearch'
@@ -13,6 +12,10 @@ import { AboutUs } from './components/AboutUs'
 import { ContactBooking } from './components/ContactBooking'
 import { Footer } from './components/Footer'
 import { BookingModal } from './components/BookingModal'
+
+const Real3DFlightIntro = lazy(() =>
+  import('./components/Real3DFlightIntro').then((module) => ({ default: module.Real3DFlightIntro })),
+)
 
 export function App() {
   const [showIntro, setShowIntro] = useState(true)
@@ -29,7 +32,15 @@ export function App() {
   return (
     <div className="min-h-screen w-full bg-[#060e18] text-white font-sans antialiased selection:bg-[#e6caa0] selection:text-[#060e18] overflow-x-hidden">
       {/* 3D Executive Aviation Intro Splash Screen */}
-      {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
+      {showIntro && (
+        <Suspense fallback={
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050d17] text-[#e6caa0] font-mono text-xs tracking-[0.2em]">
+            PREPARING YOUR JOURNEY
+          </div>
+        }>
+          <Real3DFlightIntro onFinish={() => setShowIntro(false)} />
+        </Suspense>
+      )}
 
       {/* Navigation Header */}
       <Navbar

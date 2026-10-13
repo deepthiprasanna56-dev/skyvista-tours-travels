@@ -132,17 +132,12 @@
   transform: translateY(-8px) rotateX(3deg) rotateY(-2deg);
 }
 
-/* Custom dark aviation scrollbar */
+/* Keep page scrolling enabled while hiding the scrollbar UI. */
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #040910;
-}
-::-webkit-scrollbar-thumb {
-  background: #1b3248;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #e6caa0;
+  display: none;
 }
