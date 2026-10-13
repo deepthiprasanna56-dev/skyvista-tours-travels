@@ -14,20 +14,20 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#1b2f29] text-white/80 pt-16 pb-12 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="w-full bg-[#12221d] text-white/80 pt-16 pb-12 border-t border-white/10">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-white/10">
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-4">
             <a href="#home" className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-[#31594f] text-[#e4c99b] flex items-center justify-center -rotate-12">
-                <Icon name="plane" size={20} />
+              <span className="w-11 h-11 rounded-full bg-[#31594f] text-[#e4c99b] flex items-center justify-center -rotate-12 shadow-[0_0_15px_rgba(49,89,79,0.5)]">
+                <Icon name="plane" size={21} />
               </span>
               <div>
-                <span className="text-xl font-bold tracking-tight text-white block leading-tight">
+                <span className="text-xl sm:text-2xl font-bold tracking-tight text-white block leading-tight">
                   Aeroplane
                 </span>
-                <span className="text-[9px] tracking-[0.22em] font-bold text-[#e4c99b] block">
+                <span className="text-[9px] tracking-[0.24em] font-extrabold text-[#e4c99b] block">
                   TOURS & TRAVELS
                 </span>
               </div>
@@ -115,23 +115,23 @@ export function Footer() {
             </p>
 
             {subscribed ? (
-              <div className="p-3 bg-[#31594f] rounded-xl text-xs text-[#e4c99b] font-semibold text-center">
+              <div className="p-3.5 bg-[#31594f] rounded-xl text-xs text-[#e4c99b] font-semibold text-center shadow-[0_0_20px_rgba(49,89,79,0.4)] animate-fadeIn">
                 ✓ You're subscribed to private flight deals!
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-2">
-                <div className="flex rounded-xl overflow-hidden border border-white/20 bg-white/5">
+                <div className="flex rounded-xl overflow-hidden border border-white/20 bg-white/[0.06] focus-within:border-[#e4c99b]">
                   <input
                     type="email"
                     required
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 px-3.5 py-2.5 text-xs bg-transparent text-white placeholder-white/40 focus:outline-none"
+                    className="flex-1 px-3.5 py-3 text-xs bg-transparent text-white placeholder-white/40 focus:outline-none"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2.5 bg-[#e4c99b] text-[#1b2f29] font-bold text-xs hover:bg-white transition-colors"
+                    className="px-5 py-3 bg-[#e4c99b] text-[#12221d] font-bold text-xs hover:bg-white transition-colors cursor-pointer shadow-sm"
                   >
                     Join
                   </button>

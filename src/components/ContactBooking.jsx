@@ -22,12 +22,12 @@ export function ContactBooking() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-[#233f37] text-white relative overflow-hidden">
+    <section id="contact" className="py-24 bg-[#18312b] text-white relative overflow-hidden w-full">
       {/* Decorative background visual elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#31594f]/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1a2f29]/60 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#e4c99b]/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
           {/* Left Column: Contact Info & Desk */}
           <div className="lg:col-span-5 space-y-8">
@@ -36,29 +36,29 @@ export function ContactBooking() {
                 <span className="w-6 h-[1.5px] bg-[#e4c99b]" />
                 <span>CONNECT WITH OUR AVIATION DESK</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-white tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-serif font-medium text-white tracking-tight leading-tight">
                 Shall we get <br />
                 <span className="italic text-[#e4c99b]">you flying?</span>
               </h2>
-              <p className="mt-4 text-sm text-white/80 font-light leading-relaxed">
+              <p className="mt-4 text-xs sm:text-sm text-white/80 font-light leading-relaxed">
                 Whether you need assistance with an intricate multi-city route, group ticketing, or want an expert to tailor a private holiday escape, our concierge is ready 24/7.
               </p>
             </div>
 
-            {/* Direct Contact Cards */}
+            {/* Direct Contact Cards with Glowing Hover Effect */}
             <div className="space-y-4">
               <a
                 href="tel:+18005550194"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 backdrop-blur-md transition-all group hover:shadow-[0_0_25px_rgba(228,201,155,0.25)] hover:border-[#e4c99b]/40"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#e4c99b] text-[#233f37] flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-xl bg-[#e4c99b] text-[#18312b] flex items-center justify-center font-bold shadow-md">
                   <Icon name="phone" size={20} />
                 </div>
                 <div>
                   <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider block">
                     24/7 Flight Support Line
                   </span>
-                  <span className="text-base font-bold text-white group-hover:text-[#e4c99b] transition-colors">
+                  <span className="text-base font-bold text-white group-hover:text-[#e4c99b] transition-colors font-mono">
                     +1 (800) 555-0194
                   </span>
                 </div>
@@ -66,9 +66,9 @@ export function ContactBooking() {
 
               <a
                 href="mailto:concierge@aeroplanetours.com"
-                className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 backdrop-blur-md transition-all group hover:shadow-[0_0_25px_rgba(228,201,155,0.25)] hover:border-[#e4c99b]/40"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#e4c99b] text-[#233f37] flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-xl bg-[#e4c99b] text-[#18312b] flex items-center justify-center font-bold shadow-md">
                   <Icon name="mail" size={20} />
                 </div>
                 <div>
@@ -81,7 +81,7 @@ export function ContactBooking() {
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+              <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
                 <div className="w-12 h-12 rounded-xl bg-white/10 text-[#e4c99b] flex items-center justify-center">
                   <Icon name="pin" size={20} />
                 </div>
@@ -97,18 +97,21 @@ export function ContactBooking() {
             </div>
 
             {/* Hours Banner */}
-            <div className="p-4 rounded-2xl bg-black/20 border border-white/10 text-xs text-white/70 flex items-center justify-between">
+            <div className="p-4 rounded-2xl bg-black/30 border border-white/15 text-xs text-white/80 flex items-center justify-between">
               <span>Customer Desk: Mon–Sun, 24/7 Live Support</span>
-              <span className="text-[#e4c99b] font-semibold">● Live Now</span>
+              <span className="text-[#e4c99b] font-semibold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#e4c99b] animate-ping" />
+                <span>Live Now</span>
+              </span>
             </div>
           </div>
 
-          {/* Right Column: Interactive Booking / Inquiry Form */}
-          <div className="lg:col-span-7 bg-white text-[#202b29] p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/20">
+          {/* Right Column: Interactive Booking / Inquiry Form with 3D Depth */}
+          <div className="lg:col-span-7 bg-white text-[#202b29] p-8 sm:p-11 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] border border-white/20">
             {submitted ? (
-              <div className="p-8 text-center space-y-4">
-                <div className="w-16 h-16 mx-auto rounded-full bg-[#eef4ee] text-[#31594f] flex items-center justify-center">
-                  <Icon name="checkCircle" size={36} />
+              <div className="p-8 text-center space-y-4 animate-fadeIn">
+                <div className="w-16 h-16 mx-auto rounded-full bg-[#eef4ee] text-[#31594f] flex items-center justify-center shadow-inner">
+                  <Icon name="checkCircle" size={38} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-[#233f37]">
                   Thank You, {formData.name || 'Traveler'}!
@@ -130,7 +133,7 @@ export function ContactBooking() {
                         message: '',
                       })
                     }}
-                    className="px-6 py-2.5 rounded-full text-xs font-bold text-[#31594f] bg-[#eef3ee] hover:bg-[#dfe7e0] transition-colors"
+                    className="px-7 py-3 rounded-full text-xs font-bold text-[#31594f] bg-[#eef3ee] hover:bg-[#dfe7e0] transition-colors cursor-pointer"
                   >
                     Submit Another Inquiry
                   </button>
@@ -139,7 +142,7 @@ export function ContactBooking() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <h3 className="text-2xl font-serif font-bold text-[#233f37]">
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#233f37]">
                     Plan Your Journey With An Expert
                   </h3>
                   <p className="text-xs text-[#727f77] mt-1">
@@ -158,7 +161,7 @@ export function ContactBooking() {
                       placeholder="e.g. Eleanor Vance"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
                     />
                   </div>
 
@@ -172,7 +175,7 @@ export function ContactBooking() {
                       placeholder="eleanor@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
                     />
                   </div>
 
@@ -186,7 +189,7 @@ export function ContactBooking() {
                       placeholder="+1 (555) 123-4567"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
                     />
                   </div>
 
@@ -197,7 +200,7 @@ export function ContactBooking() {
                     <select
                       value={formData.destination}
                       onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] cursor-pointer"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] cursor-pointer"
                     >
                       <option value="">Select a destination</option>
                       <option>Bali, Indonesia</option>
@@ -219,7 +222,7 @@ export function ContactBooking() {
                       type="date"
                       value={formData.travelDate}
                       onChange={(e) => setFormData({ ...formData, travelDate: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f]"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] cursor-pointer"
                     />
                   </div>
 
@@ -230,7 +233,7 @@ export function ContactBooking() {
                     <select
                       value={formData.travelers}
                       onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] cursor-pointer"
+                      className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] cursor-pointer"
                     >
                       <option>Solo Traveler</option>
                       <option>Couple (2 Travelers)</option>
@@ -249,16 +252,16 @@ export function ContactBooking() {
                     placeholder="Preferred flight class (Economy/Business), special hotel requests, anniversary celebration, etc."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] resize-none"
+                    className="w-full px-4 py-3 text-xs bg-[#fbfaf7] border border-[#d6dad2] rounded-xl focus:outline-none focus:border-[#31594f] focus:ring-1 focus:ring-[#31594f] resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-xl bg-[#31594f] hover:bg-[#233f37] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#31594f] to-[#22443a] hover:from-[#22443a] hover:to-[#173029] text-white text-xs sm:text-sm font-bold shadow-[0_4px_16px_rgba(49,89,79,0.35)] hover:shadow-[0_0_25px_rgba(49,89,79,0.55)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Request Custom Flight Quote</span>
-                  <Icon name="arrowRight" size={15} />
+                  <Icon name="arrowRight" size={16} />
                 </button>
               </form>
             )}
@@ -271,30 +274,30 @@ export function ContactBooking() {
             <span className="text-xs uppercase font-bold tracking-widest text-[#e4c99b] block mb-2">
               FREQUENTLY ASKED QUESTIONS
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-medium text-white">
+            <h3 className="text-2xl sm:text-4xl font-serif font-medium text-white">
               Everything you need to know about flying with us
             </h3>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="max-w-4xl mx-auto space-y-3.5">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm"
+                className="rounded-2xl bg-white/[0.05] border border-white/15 overflow-hidden backdrop-blur-md hover:border-[#e4c99b]/40 transition-colors"
               >
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between text-sm font-semibold text-white hover:text-[#e4c99b] transition-colors"
+                  className="w-full px-6 py-4 sm:py-5 text-left flex items-center justify-between text-sm sm:text-base font-semibold text-white hover:text-[#e4c99b] transition-colors cursor-pointer"
                 >
                   <span>{faq.q}</span>
-                  <span className="text-lg font-mono text-[#e4c99b]">
+                  <span className="text-xl font-mono text-[#e4c99b]">
                     {openFaq === index ? '−' : '+'}
                   </span>
                 </button>
 
                 {openFaq === index && (
-                  <div className="px-6 pb-4 text-xs text-white/75 font-light leading-relaxed border-t border-white/5 pt-3">
+                  <div className="px-6 pb-5 text-xs sm:text-sm text-white/80 font-light leading-relaxed border-t border-white/10 pt-3">
                     {faq.a}
                   </div>
                 )}

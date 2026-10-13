@@ -95,8 +95,8 @@ export function FlightSearch({ onSelectFlight }) {
   const toObj = airports.find((a) => a.code === toAirport) || airports[7]
 
   return (
-    <section id="booking" className="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-      <div className="bg-white rounded-3xl shadow-xl border border-[#e8e9e1] p-6 lg:p-8">
+    <section id="booking" className="relative z-20 -mt-12 w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mb-20">
+      <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_rgba(30,50,40,0.12)] border border-[#e2e5dc] p-6 lg:p-9 hover:border-[#31594f]/40 transition-all duration-300">
         {/* Top Controls: Trip Type & Cabin Class */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#f0f0ea]">
           {/* Trip Type Tabs */}
@@ -104,9 +104,9 @@ export function FlightSearch({ onSelectFlight }) {
             <button
               type="button"
               onClick={() => setTripType('round')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 tripType === 'round'
-                  ? 'bg-white text-[#31594f] shadow-sm'
+                  ? 'bg-white text-[#31594f] shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
                   : 'text-[#647169] hover:text-[#202b29]'
               }`}
             >
@@ -115,9 +115,9 @@ export function FlightSearch({ onSelectFlight }) {
             <button
               type="button"
               onClick={() => setTripType('oneway')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 tripType === 'oneway'
-                  ? 'bg-white text-[#31594f] shadow-sm'
+                  ? 'bg-white text-[#31594f] shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
                   : 'text-[#647169] hover:text-[#202b29]'
               }`}
             >
@@ -126,9 +126,9 @@ export function FlightSearch({ onSelectFlight }) {
             <button
               type="button"
               onClick={() => setTripType('multicity')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 tripType === 'multicity'
-                  ? 'bg-white text-[#31594f] shadow-sm'
+                  ? 'bg-white text-[#31594f] shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
                   : 'text-[#647169] hover:text-[#202b29]'
               }`}
             >
@@ -156,7 +156,7 @@ export function FlightSearch({ onSelectFlight }) {
         <form onSubmit={handleSearch} className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-center">
             {/* Origin Airport */}
-            <div className="lg:col-span-3 p-3.5 rounded-2xl bg-[#fbfaf7] border border-[#e8ebe3] hover:border-[#31594f] transition-colors">
+            <div className="lg:col-span-3 p-4 rounded-2xl bg-[#fbfaf7] border border-[#e5e8e0] hover:border-[#31594f] hover:shadow-sm transition-all">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-[#8b948d] mb-1">
                 Departure From
               </span>
@@ -181,16 +181,16 @@ export function FlightSearch({ onSelectFlight }) {
               <button
                 type="button"
                 onClick={handleSwapAirports}
-                className="w-9 h-9 rounded-full bg-white border border-[#dce0d8] shadow-sm flex items-center justify-center text-[#31594f] hover:bg-[#31594f] hover:text-white transition-all transform hover:rotate-180"
+                className="w-10 h-10 rounded-full bg-white border border-[#dce0d8] shadow-md flex items-center justify-center text-[#31594f] hover:bg-[#31594f] hover:text-white transition-all transform hover:rotate-180 cursor-pointer"
                 title="Swap origin and destination"
                 aria-label="Swap airports"
               >
-                <Icon name="swap" size={15} />
+                <Icon name="swap" size={16} />
               </button>
             </div>
 
             {/* Destination Airport */}
-            <div className="lg:col-span-3 p-3.5 rounded-2xl bg-[#fbfaf7] border border-[#e8ebe3] hover:border-[#31594f] transition-colors">
+            <div className="lg:col-span-3 p-4 rounded-2xl bg-[#fbfaf7] border border-[#e5e8e0] hover:border-[#31594f] hover:shadow-sm transition-all">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-[#8b948d] mb-1">
                 Fly Destination To
               </span>
@@ -211,7 +211,7 @@ export function FlightSearch({ onSelectFlight }) {
             </div>
 
             {/* Departure Date */}
-            <div className={`p-3.5 rounded-2xl bg-[#fbfaf7] border border-[#e8ebe3] hover:border-[#31594f] transition-colors ${
+            <div className={`p-4 rounded-2xl bg-[#fbfaf7] border border-[#e5e8e0] hover:border-[#31594f] hover:shadow-sm transition-all ${
               tripType === 'oneway' ? 'lg:col-span-3' : 'lg:col-span-2'
             }`}>
               <span className="block text-[10px] font-bold uppercase tracking-wider text-[#8b948d] mb-1">
@@ -224,14 +224,14 @@ export function FlightSearch({ onSelectFlight }) {
                   value={departDate}
                   onChange={(e) => setDepartDate(e.target.value)}
                   required
-                  className="w-full bg-transparent text-xs font-semibold text-[#202b29] focus:outline-none"
+                  className="w-full bg-transparent text-xs font-semibold text-[#202b29] focus:outline-none cursor-pointer"
                 />
               </div>
             </div>
 
             {/* Return Date (if round trip) */}
             {tripType !== 'oneway' && (
-              <div className="lg:col-span-2 p-3.5 rounded-2xl bg-[#fbfaf7] border border-[#e8ebe3] hover:border-[#31594f] transition-colors">
+              <div className="lg:col-span-2 p-4 rounded-2xl bg-[#fbfaf7] border border-[#e5e8e0] hover:border-[#31594f] hover:shadow-sm transition-all">
                 <span className="block text-[10px] font-bold uppercase tracking-wider text-[#8b948d] mb-1">
                   Return Date
                 </span>
@@ -242,14 +242,14 @@ export function FlightSearch({ onSelectFlight }) {
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
                     required
-                    className="w-full bg-transparent text-xs font-semibold text-[#202b29] focus:outline-none"
+                    className="w-full bg-transparent text-xs font-semibold text-[#202b29] focus:outline-none cursor-pointer"
                   />
                 </div>
               </div>
             )}
 
             {/* Travelers & Search Action */}
-            <div className="lg:col-span-1 p-3.5 rounded-2xl bg-[#fbfaf7] border border-[#e8ebe3] hover:border-[#31594f] transition-colors">
+            <div className="lg:col-span-1 p-4 rounded-2xl bg-[#fbfaf7] border border-[#e5e8e0] hover:border-[#31594f] hover:shadow-sm transition-all">
               <span className="block text-[10px] font-bold uppercase tracking-wider text-[#8b948d] mb-1">
                 Travelers
               </span>
@@ -270,16 +270,16 @@ export function FlightSearch({ onSelectFlight }) {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-[#6a756f]">
               <Icon name="shield" size={15} className="text-[#31594f]" />
-              <span>Real-time IATA fares · Zero hidden transaction fees</span>
+              <span>Real-time IATA fares · Zero hidden transaction fees · Instant Confirmation</span>
             </div>
 
             <button
               type="submit"
               disabled={isSearching}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-[#31594f] hover:bg-[#233f37] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-75"
+              className="w-full sm:w-auto px-9 py-4 rounded-2xl bg-gradient-to-r from-[#31594f] to-[#24473e] hover:from-[#24473e] hover:to-[#1a332d] text-white text-xs sm:text-sm font-bold shadow-[0_4px_16px_rgba(49,89,79,0.35)] hover:shadow-[0_0_25px_rgba(49,89,79,0.55)] transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-75"
             >
               {isSearching ? (
                 <>
@@ -301,30 +301,30 @@ export function FlightSearch({ onSelectFlight }) {
           <div className="mt-8 pt-8 border-t border-[#eeeee6] animate-fadeIn">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-lg font-serif font-bold text-[#202b29]">
+                <h3 className="text-xl font-serif font-bold text-[#202b29]">
                   Available Flights: {fromObj.city} ({fromObj.code}) ➔ {toObj.city} ({toObj.code})
                 </h3>
                 <p className="text-xs text-[#717b75]">
                   Showing 3 verified departures for {departDate} · {cabinClass} · {travelers} Traveler(s)
                 </p>
               </div>
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#eef4ee] text-[#31594f]">
-                3 Options Found
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#eef4ee] text-[#31594f] shadow-sm">
+                3 Direct & Fast Routes Found
               </span>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-4">
               {searchResults.map((flight) => (
                 <div
                   key={flight.id}
-                  className="p-5 rounded-2xl bg-[#fcfbfa] border border-[#e7eae2] hover:border-[#31594f] hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
+                  className="p-6 rounded-2xl bg-[#fcfbfa] border border-[#e7eae2] hover:border-[#31594f] hover:shadow-[0_8px_30px_rgba(49,89,79,0.12)] transition-all flex flex-col md:flex-row md:items-center justify-between gap-5"
                 >
                   {/* Airline & Tag */}
-                  <div className="space-y-1 min-w-[180px]">
-                    <span className="inline-block px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#31594f] bg-[#eef4ee] rounded">
+                  <div className="space-y-1 min-w-[200px]">
+                    <span className="inline-block px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#31594f] bg-[#eef4ee] rounded-md">
                       {flight.tag}
                     </span>
-                    <h4 className="font-bold text-sm text-[#202b29]">{flight.airline}</h4>
+                    <h4 className="font-bold text-base text-[#202b29]">{flight.airline}</h4>
                     <span className="text-xs text-[#808a83] block">Flight #{flight.flightNumber}</span>
                   </div>
 
@@ -337,9 +337,9 @@ export function FlightSearch({ onSelectFlight }) {
 
                     <div className="flex-1 text-center px-2">
                       <span className="text-[11px] text-[#78827b] block font-medium">{flight.duration}</span>
-                      <div className="relative flex items-center justify-center my-1">
-                        <div className="w-full h-[1px] bg-[#cfd5cc]" />
-                        <Icon name="plane" size={14} className="text-[#31594f] absolute rotate-90" />
+                      <div className="relative flex items-center justify-center my-1.5">
+                        <div className="w-full h-[1.5px] bg-[#cfd5cc]" />
+                        <Icon name="plane" size={15} className="text-[#31594f] absolute rotate-90" />
                       </div>
                       <span className="text-[10px] text-[#31594f] font-semibold block">{flight.type}</span>
                     </div>
@@ -358,7 +358,7 @@ export function FlightSearch({ onSelectFlight }) {
                         <span>{flight.baggage}</span>
                       </span>
                       <div className="mt-0.5">
-                        <span className="text-xl font-bold text-[#31594f]">${flight.price}</span>
+                        <span className="text-2xl font-bold text-[#31594f]">${flight.price}</span>
                         <span className="text-[10px] text-[#868f89]"> / person</span>
                       </div>
                     </div>
@@ -374,7 +374,7 @@ export function FlightSearch({ onSelectFlight }) {
                           date: departDate,
                         })
                       }
-                      className="px-5 py-2.5 rounded-xl bg-[#31594f] hover:bg-[#233f37] text-white text-xs font-bold transition-all shadow-sm hover:shadow"
+                      className="px-6 py-3 rounded-xl bg-[#31594f] hover:bg-[#233f37] text-white text-xs font-bold transition-all shadow-md hover:shadow-lg cursor-pointer"
                     >
                       Book Flight
                     </button>

@@ -13,12 +13,71 @@
     scroll-behavior: smooth;
   }
 
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
     min-width: 320px;
     background-color: #fbfaf7;
     color: #202b29;
     overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* 3D Animations & Floating Keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1.5deg);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(228, 201, 155, 0.3), 0 0 30px rgba(49, 89, 79, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(228, 201, 155, 0.65), 0 0 55px rgba(49, 89, 79, 0.45);
+  }
+}
+
+@keyframes airplaneGlide {
+  0% {
+    transform: translateX(-40px) translateY(10px) rotate(-5deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(10px) translateY(-8px) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-40px) translateY(10px) rotate(-5deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -33,11 +92,46 @@
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 
-/* Custom scrollbar for modern browsers */
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.animate-glide {
+  animation: airplaneGlide 7s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radarSweep 8s linear infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Card Hover Effects */
+.card-3d-wrap {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card-3d-item {
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d-item:hover {
+  transform: translateY(-8px) rotateX(3deg) rotateY(-2deg);
+}
+
+/* Custom modern scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -45,9 +139,9 @@
   background: #f1efe9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c5cbc3;
+  background: #b5beb3;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9fa89d;
+  background: #8e9b8b;
 }

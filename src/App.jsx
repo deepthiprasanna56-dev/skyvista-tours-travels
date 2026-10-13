@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { IntroScreen } from './components/IntroScreen'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { FlightSearch } from './components/FlightSearch'
+import { ThreeDSlider } from './components/ThreeDSlider'
 import { Destinations } from './components/Destinations'
 import { PackagesOffers } from './components/PackagesOffers'
 import { Services } from './components/Services'
@@ -11,6 +13,7 @@ import { Footer } from './components/Footer'
 import { BookingModal } from './components/BookingModal'
 
 export function App() {
+  const [showIntro, setShowIntro] = useState(true)
   const [selectedItem, setSelectedItem] = useState(null)
 
   function handleOpenBooking(item) {
@@ -22,28 +25,37 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] text-[#202b29] font-sans antialiased selection:bg-[#c9dbc9] selection:text-[#202b29]">
-      {/* Navigation Header */}
-      <Navbar onOpenBooking={handleOpenBooking} />
+    <div className="min-h-screen w-full bg-[#fbfaf7] text-[#202b29] font-sans antialiased selection:bg-[#c9dbc9] selection:text-[#202b29] overflow-x-hidden">
+      {/* 3D Intro Splash Screen */}
+      {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
 
-      {/* Main Content Sections */}
-      <main>
+      {/* Navigation Header */}
+      <Navbar
+        onOpenBooking={handleOpenBooking}
+        onShowIntro={() => setShowIntro(true)}
+      />
+
+      {/* Main Content Sections - Full Bleed & Fluid */}
+      <main className="w-full overflow-x-hidden">
         {/* Hero Section */}
         <Hero onOpenBooking={handleOpenBooking} />
 
         {/* Flight Search & Booking Engine */}
         <FlightSearch onSelectFlight={handleOpenBooking} />
 
-        {/* Popular Destinations */}
+        {/* 3D Interactive Slide Carousel Showcase */}
+        <ThreeDSlider onSelectPackage={handleOpenBooking} />
+
+        {/* Popular Destinations with 3D Card Hover */}
         <Destinations onSelectDestination={handleOpenBooking} />
 
-        {/* Flight Packages & Offers */}
+        {/* Flight Packages & Special Offers */}
         <PackagesOffers onSelectPackage={handleOpenBooking} />
 
-        {/* Travel Services */}
+        {/* Aviation & Travel Services */}
         <Services />
 
-        {/* About Us & Testimonials */}
+        {/* About Us, Milestones & Verified Traveler Reviews */}
         <AboutUs />
 
         {/* Contact & Inquiry Form + FAQs */}
