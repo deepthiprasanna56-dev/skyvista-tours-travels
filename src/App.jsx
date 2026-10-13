@@ -3,6 +3,8 @@ import { IntroScreen } from './components/IntroScreen'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { FlightSearch } from './components/FlightSearch'
+import { CabinExperience } from './components/CabinExperience'
+import { FleetShowcase } from './components/FleetShowcase'
 import { ThreeDSlider } from './components/ThreeDSlider'
 import { Destinations } from './components/Destinations'
 import { PackagesOffers } from './components/PackagesOffers'
@@ -25,8 +27,8 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#fbfaf7] text-[#202b29] font-sans antialiased selection:bg-[#c9dbc9] selection:text-[#202b29] overflow-x-hidden">
-      {/* 3D Intro Splash Screen */}
+    <div className="min-h-screen w-full bg-[#060e18] text-white font-sans antialiased selection:bg-[#e6caa0] selection:text-[#060e18] overflow-x-hidden">
+      {/* 3D Executive Aviation Intro Splash Screen */}
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
 
       {/* Navigation Header */}
@@ -35,24 +37,30 @@ export function App() {
         onShowIntro={() => setShowIntro(true)}
       />
 
-      {/* Main Content Sections - Full Bleed & Fluid */}
+      {/* Main Content Sections - Full Bleed, Edge-to-Edge & Fluid */}
       <main className="w-full overflow-x-hidden">
-        {/* Hero Section */}
+        {/* Cinematic Hero Section */}
         <Hero onOpenBooking={handleOpenBooking} />
 
-        {/* Flight Search & Booking Engine */}
+        {/* Executive Flight Search & Booking Engine */}
         <FlightSearch onSelectFlight={handleOpenBooking} />
+
+        {/* Interactive Boeing 787-9 Cabin Blueprint & Suite Selector */}
+        <CabinExperience onSelectSuite={handleOpenBooking} />
+
+        {/* Global Executive Aircraft Fleet Showcase */}
+        <FleetShowcase onSelectCharter={handleOpenBooking} />
 
         {/* 3D Interactive Slide Carousel Showcase */}
         <ThreeDSlider onSelectPackage={handleOpenBooking} />
 
-        {/* Popular Destinations with 3D Card Hover */}
+        {/* Curated Luxury Destinations */}
         <Destinations onSelectDestination={handleOpenBooking} />
 
-        {/* Flight Packages & Special Offers */}
+        {/* Flight Packages & Expeditions */}
         <PackagesOffers onSelectPackage={handleOpenBooking} />
 
-        {/* Aviation & Travel Services */}
+        {/* Aviation & Bespoke Concierge Services */}
         <Services />
 
         {/* About Us, Milestones & Verified Traveler Reviews */}
@@ -65,7 +73,7 @@ export function App() {
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Booking & E-Ticket Modal */}
+      {/* Interactive Booking & Boarding Pass Modal */}
       {selectedItem && (
         <BookingModal
           item={selectedItem}
